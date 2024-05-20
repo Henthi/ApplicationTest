@@ -1,0 +1,49 @@
+<div class="container">
+    <div>
+        <h1>{{header}}</h1>
+
+        <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+            <div class="form-group mt-3">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" [ngClass]="{'invalid-input': !name.valid && !name.pristine}" id="name" required [(ngModel)]="selectedContact.name"
+                    name="name" #name="ngModel">
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="surname">Surname</label>
+                <input type="text" class="form-control" [ngClass]="{'invalid-input': !surname.valid  && !surname.pristine}" id="surname" required [(ngModel)]="selectedContact.surname"
+                    name="surname" #surname="ngModel">
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="tel">Telephone Number</label>
+                <input type="text" class="form-control" [ngClass]="{'invalid-input': !tel.valid && !tel.pristine}" id="tel" required [(ngModel)]="selectedContact.tel" name="tel"
+                    #tel="ngModel">
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="emailAddress">Email Address</label>
+                <input type="email" email="true" class="form-control" [ngClass]="{'invalid-input': !emailAddress.valid && !emailAddress.pristine}" id="emailAddress" required
+                    [(ngModel)]="selectedContact.emailAddress" name="emailAddress" #emailAddress="ngModel">
+            </div>
+
+            <div class="form-group mt-3">
+                <label for="dateOfBirth">Date of Birth</label>
+                <div>
+                    <mat-form-field>
+                        <!-- <mat-label>Date of birth</mat-label> -->
+                        <input [ngClass]="{'invalid-input': !dateOfBirth.valid && !dateOfBirth.pristine}" matInput [max]="maxDate" [matDatepicker]="picker" required [(ngModel)]="selectedContact.dateOfBirth"
+                            name="dateOfBirth" #dateOfBirth="ngModel">
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success mt-1 mx-1" [disabled]="!contactForm.form.valid">Submit</button>
+            <button type="button" class="btn btn-default mt-1 mx-1" (click)="onBack()">Back</button>
+        </form>
+    </div>
+
+</div>
